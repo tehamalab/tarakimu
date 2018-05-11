@@ -1,0 +1,20 @@
+update: all
+
+pin: False
+
+branch: dev
+schedule: "every day"
+search: True
+
+requirements:
+  - requirements_dev.txt:
+      update: all
+      pin: False
+  - requirements_docs.txt:
+      update: all
+      pin: False
+
+label_prs: update
+assignees: []
+branch_prefix: pyup/
+close_prs: True
