@@ -2,7 +2,7 @@
 
 """Top-level package for tarakimu."""
 
-__author__ = """Tehmalab"""
+__author__ = """Tehamalab"""
 __email__ = 'developers@tehamalab.com'
 __version__ = '0.1.0'
 

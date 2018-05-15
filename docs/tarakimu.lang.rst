@@ -11,9 +11,15 @@ tarakimu.lang
 Swahili
 -------
 
-tarakimu.lang.sw
-
 .. automodule:: tarakimu.lang.sw
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+English
+-------
+
+.. automodule:: tarakimu.lang.en
     :members:
     :undoc-members:
     :show-inheritance:

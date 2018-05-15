@@ -26,10 +26,11 @@ def test_numtowords(numwords):
 
     runner = CliRunner()
 
-    for n, w in numwords.items():
-        result = runner.invoke(cli.cli, ['numtowords', '--', n])
-        assert result.exit_code == 0
-        assert w == result.output.strip()
+    for lang, samples in numwords.items():
+        for n, w in samples.items():
+            result = runner.invoke(cli.cli, ['numtowords', '-l', lang, '--', n])
+            assert result.exit_code == 0
+            assert w == result.output.strip()
 
 
 def test_invalid_numtowords(invalid_nums):

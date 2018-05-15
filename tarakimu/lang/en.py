@@ -1,41 +1,40 @@
 # -*- coding: utf-8 -*-
 
-"""Swahili language module."""
+"""English language module."""
 
 from .base import AbstractNumber
 
 
 class Number(AbstractNumber):
 
-    ZERO = 'sifuri'
-    NEGATIVE = 'hasi'
-    ONES = ['', 'moja', 'mbili', 'tatu', 'nne', 'tano', 'sita', 'saba', 'nane', 'tisa']
+    ZERO = 'zero'
+    NEGATIVE = 'negative'
+    ONES = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    TEENS = [
+        '', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen',
+        'seventeen', 'eighteen', 'nineteen'
+    ]
     TENS = [
-        '', 'kumi', 'ishirini', 'thelathini', 'arobaini', 'hamsini', 'sitini',
-        'sabini', 'themanini', 'tisini'
+        '', 'ten', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy',
+        'eighty', 'ninety'
     ]
     HUNDREDS = [
-        '', 'mia moja', 'mia mbili', 'mia tatu', 'mia nne', 'mia tano',
-        'mia sita', 'mia saba', 'mia nane', 'mia tisa'
+        '', 'one hundred', 'two hundred', 'three hundred', 'four hundred',
+        'five hundred', 'six hundred', 'seven hundred', 'eight hundred',
+        'nine hundred'
     ]
     RANKS = [
-        '', 'elfu', 'milioni', 'bilioni', 'trilioni', 'kuadrilioni',
-        'kuintilioni', 'seksitilioni', 'septilioni', 'oktilioni', 'nonilioni',
-        'desilioni', 'anidesilioni', 'dodesilioni', 'tradesilioni',
-        'kuatuordesilion', 'kuindesilioni', 'seksidesilioni',
-        'septendesilioni', 'oktodesilioni', 'novemdesilioni', 'vijintilioni'
+        '', 'thousand', 'million', 'billion', 'trillion', 'quadrillion',
+        'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion',
+        'decillion', 'undecillion', 'duodecillion', 'tredecillion',
+        'quattuordecillion', 'quindecillion', 'sexdecillion',
+        'septendecillion', 'octodecillion', 'novemdecillion', 'vigintillion'
     ]
-    CONJUNCTION = 'na'
-    POINT = 'nukta'
-
-    def __init__(self, number, **kwargs):
-        super(Number, self).__init__(number)
-
-        kwargs = kwargs or {}
-        self.use_lakh = kwargs.get('use_lakh', False)
+    CONJUNCTION = 'and'
+    POINT = 'point'
 
     @classmethod
-    def digits_to_words(cls, number):
+    def digits_to_words(cls, number, **kwargs):
         """Get words for each digit in a number
 
         Args:
@@ -81,20 +80,26 @@ class Number(AbstractNumber):
                 if ten:
                     words.append(cls.CONJUNCTION)
                     words.append(cls.TENS[ten])
-                if one:
-                    words.append(cls.CONJUNCTION)
-                    words.append(cls.ONES[one])
+                    if one:
+                        words.append(cls.ONES[one])
+                else:
+                    words += [cls.CONJUNCTION, cls.ONES[one]]
             else:
                 words.append(cls.HUNDREDS[hundred])
 
         elif 100 > number >= 10:
-            ten = number // 10
-            one = number % 10
-            words.append(cls.TENS[ten])
+            if 20 > number > 10:
+                teen = number - 10
+                words.append(cls.TEENS[teen])
+            else:
+                ten = number // 10
+                one = number % 10
+                words.append(cls.TENS[ten])
 
-            if one:
-                words.append(cls.CONJUNCTION)
-                words.append(cls.ONES[one])
+                if one and not ten:
+                    words.append(cls.CONJUNCTION)
+                elif one:
+                    words.append(cls.ONES[one])
 
         else:
             words.append(cls.ONES[number])
@@ -111,49 +116,14 @@ class Number(AbstractNumber):
         Args:
             number (numeric): An integer or a numeric string to be converted.
 
-            use_lakh (bool): Use Lakh (Laki) numbering system.
-                Defaults to False.
-
         Returns:
-            str: numeric value within numbers short scale in words.
-
+            str: numeric value within numbers short scale in words
         """
-        number = int(number)
         words = []
-
+        number = int(number)
         rank = cls.get_short_scale(number)
-
         hundred = number // 10**(3*rank)
-        if rank == 1 and hundred >= 100 and use_lakh:
-            laki = hundred // 100
-            lakir = hundred % 100
-            words += ['laki', cls.ONES[laki]]
-            if lakir:
-                words += [cls.CONJUNCTION, 'elfu', cls.hundreds_to_words(lakir)]
-        else:
-            words = [cls.RANKS[rank], cls.hundreds_to_words(hundred)]
-
-        return ' '.join(words)
-
-    @classmethod
-    def short_scale_to_words_r(cls, number):
-        """Get a value within the short scale range of a number in words
-        with words representing scale added at the end.
-
-        Args:
-            number (numeric): An integer or a numeric string to be converted.
-
-            use_lakh (bool): Use Lakh (Laki) numbering system.
-                             Defaults to False.
-
-        Returns:
-            str: numeric value within numbers short scale in words.
-
-        """
-        number = int(number)
-        words = []
-        rank = cls.get_short_scale(number)
-        words = [cls.hundreds_to_words(number // 10**(3*rank)), cls.RANKS[rank]]
+        words = [cls.hundreds_to_words(hundred), cls.RANKS[rank]]
 
         return ' '.join(words)
 
@@ -190,13 +160,10 @@ class Number(AbstractNumber):
                 rank = self.get_short_scale(quotient)
                 _next = quotient - (quotient // 10**(3*rank)) * (10**(3*rank))
 
-                if (100000 <= quotient < 1000000) and not self.use_lakh:
-                    words.append(cls.short_scale_to_words_r(quotient))
-                else:
-                    words.append(cls.short_scale_to_words(quotient, self.use_lakh))
+                words.append(cls.short_scale_to_words(quotient))
 
                 if _next >= 1000:
-                    words.append(',')  # TODO: should allow either ',' or 'na'
+                    words.append(',')
 
                 quotient = _next
             else:
