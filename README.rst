@@ -59,4 +59,4 @@ Using command line interface
 
 .. code-block:: console
 
-    tarakimu numtowords 88  # writes to standard output 'themanini na nane'
+    $ tarakimu numtowords 88  # writes to the standard output 'themanini na nane'
