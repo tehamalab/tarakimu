@@ -6,3 +6,8 @@ History
 ------------------
 
 * Package created.
+
+0.2.0 (2018-05-15)
+------------------
+
+* Adding multilingual support, Swahili and English.
