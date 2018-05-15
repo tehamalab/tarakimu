@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Tehmalab <developers@tehamalab.com>
+* Tehamalab <developers@tehamalab.com>
 
 Contributors
 ------------

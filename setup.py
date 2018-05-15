@@ -18,7 +18,7 @@ setup_requirements = ['pytest-runner', ]
 test_requirements = ['pytest', ]
 
 setup(
-    author="Tehmalab",
+    author="Tehamalab",
     author_email='developers@tehamalab.com',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
