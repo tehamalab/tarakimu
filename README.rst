@@ -20,7 +20,7 @@ Tarakimu
 
 
 
-A python library for number to Swahili words conversion
+A tool for Swahili and English number to words conversion written in Python
 
 
 * Free software: BSD license
@@ -54,9 +54,18 @@ Using Python
     
     num_to_words('-88000000')  # returns 'hasi kuadrilioni themanini na nane'
 
+    num_to_words('88', lang='en')  # returns 'eighty eight'
+
 
 Using command line interface
 
 .. code-block:: console
 
-    $ tarakimu numtowords 88  -l sw  # writes to the standard output 'themanini na nane'
+    $ tarakimu numtowords 88  # writes to the standard output 'themanini na nane'
+
+OR
+
+.. code-block:: console
+
+    $ tarakimu numtowords 88 -l en  # writes to the standard output 'eighty eight'
+
