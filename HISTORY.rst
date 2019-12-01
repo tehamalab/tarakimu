@@ -2,6 +2,14 @@
 History
 =======
 
+0.3.0 (2019-12-01)
+------------------
+
+* Fixing conversion of very large numbers to words.
+* Fixing conversion of teens when number is greater than 100 in English.
+* Flake8 clean ups
+
+
 0.2.1 (2019-09-17)
 ------------------
 
