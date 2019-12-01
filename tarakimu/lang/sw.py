@@ -166,7 +166,7 @@ class Number(AbstractNumber):
         """
         words = []
         cls = self.__class__
-        quotient = abs(float(self.quotient))
+        quotient = abs(int(self.quotient))
 
         if self.is_negative:
             words.append(cls.NEGATIVE)
@@ -189,7 +189,6 @@ class Number(AbstractNumber):
             while quotient >= 1000:
                 rank = self.get_short_scale(quotient)
                 _next = quotient - (quotient // 10**(3*rank)) * (10**(3*rank))
-
                 if (100000 <= quotient < 1000000) and not self.use_lakh:
                     words.append(cls.short_scale_to_words_r(quotient))
                 else:

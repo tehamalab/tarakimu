@@ -136,7 +136,7 @@ class Number(AbstractNumber):
         """
         words = []
         cls = self.__class__
-        quotient = abs(float(self.quotient))
+        quotient = abs(int(self.quotient))
 
         if self.is_negative:
             words.append(cls.NEGATIVE)
