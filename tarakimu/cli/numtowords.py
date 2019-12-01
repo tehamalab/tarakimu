@@ -16,7 +16,4 @@ from ..utils import num_to_words
               help='use lakh numbering format (Swahili only).')
 def numtowords(number, lang='sw', use_lakh=False):
     """Convert number to words."""
-    try:
-        click.echo(num_to_words(number, lang=lang, use_lakh=use_lakh))
-    except Exception as e:
-        click.abort()
+    click.echo(num_to_words(number, lang=lang, use_lakh=use_lakh))
