@@ -77,7 +77,12 @@ class Number(AbstractNumber):
                 ten = hundredr // 10
                 one = hundredr % 10
                 words.append(cls.HUNDREDS[hundred])
-                if ten:
+
+                ten_ = (number % 100)
+                if 20 > ten_ > 10:
+                    words.append(cls.CONJUNCTION)
+                    words.append(cls.TEENS[ten_ - 10])
+                elif ten:
                     words.append(cls.CONJUNCTION)
                     words.append(cls.TENS[ten])
                     if one:

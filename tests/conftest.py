@@ -25,8 +25,14 @@ def numwords():
             '1001.1': 'one thousand and one point one',
             100: 'one hundred',
             2012: 'two thousand and twelve',
+            112: 'one hundred and twelve',
             100103: 'one hundred thousand, one hundred and three',
-            3000000000: 'three billion'
+            3000000000: 'three billion',
+            11111111111111111111: (
+                'eleven quintillion, one hundred and eleven quadrillion, one '
+                'hundred and eleven trillion, one hundred and eleven billion, '
+                'one hundred and eleven million, one hundred and eleven '
+                'thousand, one hundred and eleven')
         }
     }
 
