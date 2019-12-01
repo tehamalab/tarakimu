@@ -17,7 +17,16 @@ def numwords():
                 'kuintilioni mia moja na kumi na moja, kuadrilioni mia moja '
                 'na kumi na moja, trilioni mia moja na kumi na moja, bilioni '
                 'mia moja na kumi na moja, milioni mia moja na kumi na moja, '
-                'mia moja na kumi na moja elfu, mia moja na kumi na moja')
+                'mia moja na kumi na moja elfu, mia moja na kumi na moja'),
+            '1111111111111111111111111111111111.11': (
+                'desilioni moja, nonilioni mia moja na kumi na moja, '
+                'oktilioni mia moja na kumi na moja, septilioni mia moja na '
+                'kumi na moja, seksitilioni mia moja na kumi na moja, '
+                'kuintilioni mia moja na kumi na moja, kuadrilioni mia moja '
+                'na kumi na moja, trilioni mia moja na kumi na moja, bilioni '
+                'mia moja na kumi na moja, milioni mia moja na kumi na moja, '
+                'mia moja na kumi na moja elfu, mia moja na kumi na moja '
+                'nukta moja moja')
         },
         'en': {
             '88': 'eighty eight',
@@ -32,7 +41,12 @@ def numwords():
                 'eleven quintillion, one hundred and eleven quadrillion, one '
                 'hundred and eleven trillion, one hundred and eleven billion, '
                 'one hundred and eleven million, one hundred and eleven '
-                'thousand, one hundred and eleven')
+                'thousand, one hundred and eleven'),
+            '11111111111111111111.11': (
+                'eleven quintillion, one hundred and eleven quadrillion, one '
+                'hundred and eleven trillion, one hundred and eleven billion, '
+                'one hundred and eleven million, one hundred and eleven '
+                'thousand, one hundred and eleven point one one')
         }
     }
 

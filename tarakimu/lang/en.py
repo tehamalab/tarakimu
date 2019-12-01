@@ -49,7 +49,7 @@ class Number(AbstractNumber):
         digits = str(number)
 
         for i in digits:
-            if float(i) == 0:
+            if int(i) == 0:
                 words.append(cls.ZERO)
             else:
                 words.append(cls.ONES[int(i)])
